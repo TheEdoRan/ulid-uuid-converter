@@ -45,7 +45,7 @@ describe("input validation", () => {
 
 	test("ULIDtoUUID() with a malformed input and `nullOnInvalidInput` set to false throws", () => {
 		expect(() => {
-			ULIDtoUUID("01GSKDWSDJKB7JAEZBTZ36R09U"); // cannot use "U" character
+			ULIDtoUUID("01GSKDWSDJKB7JAEZBTZ36R09U", { nullOnInvalidInput: false }); // cannot use "U" character
 		}).toThrow();
 	});
 
@@ -64,7 +64,7 @@ describe("input validation", () => {
 
 	test("UUIDtoULID() with a malformed input and `nullOnInvalidInput` set to false throws", () => {
 		expect(() => {
-			UUIDtoULID("018666E0-1405-53CA-2B6B-74B325D8757CL"); // one extra character
+			UUIDtoULID("018666E0-1405-53CA-2B6B-74B325D8757CL", { nullOnInvalidInput: false }); // one extra character
 		}).toThrow();
 	});
 

@@ -25,7 +25,7 @@ export function UUIDtoULID(uuid: string, opts?: NullOnInvalidInput | ThrowOnInva
 		throw new Error("UUID to ULID conversion failed: invalid UUID input");
 	}
 
-	const ulid = crockfordEncode(Buffer.from(uuid.replace(/-/g, ""), "hex"));
+	const ulid = crockfordEncode(Buffer.from(uuid.replaceAll("-", ""), "hex"));
 
 	return ulid;
 }
@@ -46,10 +46,19 @@ export function ULIDtoUUID(ulid: string, opts?: NullOnInvalidInput | ThrowOnInva
 		throw new Error("ULID to UUID conversion failed: invalid ULID input");
 	}
 
-	const uuid = crockfordDecode(ulid)
-		.toString("hex")
-		.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, "$1-$2-$3-$4-$5") // add hyphens
-		.toLowerCase();
+	let uuid = crockfordDecode(ulid).toString("hex");
+
+	// add hyphens
+	uuid =
+		uuid.substring(0, 8) +
+		"-" +
+		uuid.substring(8, 12) +
+		"-" +
+		uuid.substring(12, 16) +
+		"-" +
+		uuid.substring(16, 20) +
+		"-" +
+		uuid.substring(20);
 
 	return uuid;
 }

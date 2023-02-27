@@ -11,6 +11,8 @@ npm i ulid-uuid-converter
 ## Usage
 
 ```typescript
+import { UUIDtoULID, ULIDtoUUID } from "ulid-uuid-converter";
+
 const ulid = UUIDtoULID("0186675b-9439-536e-1c4c-561c280fa87b");
 // outputs: 01GSKNQ51SADQ1RK2P3GM0ZA3V
 

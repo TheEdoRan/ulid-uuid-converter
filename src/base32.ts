@@ -30,14 +30,7 @@ export const crockfordEncode = (input: Buffer): string => {
 };
 
 export const crockfordDecode = (input: string): Buffer => {
-	// 1. Translate input to all uppercase
-	// 2. Translate I, L, and O to valid base 32 characters
-	// 3. Remove all hyphens
-	let sanitizedInput = input
-		.toUpperCase()
-		.replace(/O/g, "0")
-		.replace(/[IL]/g, "1")
-		.replace(/-+/g, "");
+	let sanitizedInput = input.toUpperCase();
 
 	// Work from the end
 	sanitizedInput = sanitizedInput.split("").reverse().join("");
